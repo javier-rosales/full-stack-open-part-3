@@ -75,10 +75,10 @@ app.get("/api/people/:id", (request, response) => {
 
 app.post("/api/people", (request, response) => {
     const name = request.body.name
-    const phoneNumber = request.body.phoneNumber
+    const number = request.body.number
     const isNameRepeated = people.find(person => person.name === name)
 
-    if (!(name || phoneNumber)) {
+    if (!(name || number)) {
         return response.status(400).json({
             error: "Name and Phone number missing"
         })
@@ -90,7 +90,7 @@ app.post("/api/people", (request, response) => {
         })
     }
 
-    if (!phoneNumber) {
+    if (!number) {
         return response.status(400).json({
             error: "Phone number missing"
         })
@@ -105,7 +105,7 @@ app.post("/api/people", (request, response) => {
     const person = {
         id: getNewId(),
         name,
-        phoneNumber
+        number
     }
 
     people.push(person)
